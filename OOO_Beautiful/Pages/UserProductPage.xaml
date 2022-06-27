@@ -1,0 +1,74 @@
+﻿<Page x:Class="OOO_Beautiful.Pages.UserProductPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:OOO_Beautiful.Pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="UserProductPage">
+
+    <Grid Background="White">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.2*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Background="#FFFFCC99">
+            <Label Content="Меню:" FontFamily="Comic Sans MS"/>
+            <Button Content="Продукты" FontFamily="Comic Sans MS" Margin="10 10 10 10" Background="#FFCC6600"/>
+        </StackPanel>
+        <StackPanel  Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top">
+            <TextBox x:Name="TBSearch" SelectionChanged="TBSearch_SelectionChanged" Width="350" Height="25"/>
+            <ComboBox Width="160"/>
+            <ComboBox Width="160"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Height="400">
+            <ListView x:Name="LVProductUser" SelectionChanged="LVProductUser_SelectionChanged" Height="400">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="300"/>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <StackPanel Grid.Column="0">
+                                <Image>
+                                    <Image.Source>
+                                        <Binding Path="ProductPhoto">
+                                            <Binding.TargetNullValue>
+                                                <ImageSource>..\Images\picture.png</ImageSource>
+                                            </Binding.TargetNullValue>
+                                        </Binding>
+                                    </Image.Source>
+                                </Image>
+                            </StackPanel>
+                            <Rectangle Grid.Column="0" Stroke="Black"/>
+                            <StackPanel Grid.Column="1">
+                                <Label Content="{Binding ProductName}"/>
+                                <Label Content="{Binding ProductDescription}"/>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Производитель: "/>
+                                    <Label Content="{Binding ProductManufacturer}"/>
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="Цена: "/>
+                                    <Label Content="{Binding ProductCost}"/>
+                                </StackPanel>
+                            </StackPanel>
+                            <Rectangle Grid.Column="1" Stroke="Black"/>
+                            <StackPanel Grid.Column="2">
+                                <Label Content="{Binding ProductDiscountAmount}"/>
+                            </StackPanel>
+                            <Rectangle Grid.Column="2" Stroke="Black"/>
+                            <StackPanel Grid.Column="3" VerticalAlignment="Center" HorizontalAlignment="Center">
+                                <Button Content="Купить"/>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackPanel>
+    </Grid>
+</Page>
